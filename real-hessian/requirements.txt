@@ -1,0 +1,12 @@
+-f https://storage.googleapis.com/jax-releases/jax_cuda_releases.html
+jax[cuda11_pip]
+flax
+datasets
+tqdm
+fire
+wandb
+evaluate
+scikit-learn
+qiskit
+transformers
+pillow

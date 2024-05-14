@@ -1,0 +1,33 @@
+name: mlp-scaling
+project: qnewton
+command:
+  - ${interpreter}
+  - ${program}
+  - ${args}
+  - "--num_hidden_layers=2"
+  - "--batch_size=2048"
+  - "--learning_rate=5e-3"
+  - "--num_epochs=50"
+  - "--warmup_steps=20"
+  - "--enable_newton=True"
+  - "--hidden_size=30"
+  - "--evaluation_steps=50"
+  - "--normalization_epsilon=1"
+method: grid
+metric:
+  goal: minimize
+  name: best_eval_loss
+parameters:
+  quantum_sparsity_ratio:
+    values:
+      - 0.1
+      - 0.2
+      - 0.3
+      - 0.4
+      - 0.5
+      - 0.6
+      - 0.7
+      - 0.8
+      - 0.9
+
+program: qnewton/train-mlp-on-mnist.py

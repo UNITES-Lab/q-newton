@@ -1,0 +1,43 @@
+name: bert-scaling
+project: qnewton
+command:
+  - ${interpreter}
+  - ${program}
+  - ${args}
+  - "--pretrained_embedding_name_or_path='bert-base-uncased'"
+  - "--enable_newton=True"
+  - "--batch_size=128"
+  - "--learning_rate=5e-2"
+  - "--warmup_steps=1000"
+  - "--evaluation_steps=500"
+  - "--num_epochs=3"
+  - "--hidden_size=64"
+  - "--num_hidden_layers=3"
+  - "--num_attention_heads=4"
+  - "--intermediate_size=256"
+  - "--profile_hessian_per_steps=50"
+  - "--quantum_sparsity_ratio=1.0"
+method: grid
+metric:
+  goal: minimize
+  name: best_eval_loss
+parameters:
+  normalization_epsilon:
+    values:
+      - 1e-3
+      - 5e-3
+      - 1e-2
+      - 5e-2
+      - 1e-1
+      - 5e-1
+      - 1
+      - 5
+      - 1e1
+      - 5e1
+      - 1e2
+      - 5e2
+      - 1e3
+      - 5e3
+      - 1e4
+
+program: qnewton/train-bert-tiny.py
